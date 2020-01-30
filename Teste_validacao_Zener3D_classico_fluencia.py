@@ -9,7 +9,7 @@ from matplotlib import pyplot as plt
 from modulo_ensaios import Ensaio_fluencia_recuperacao
 from modulo_modelosZener3D_infinitesimal import ModeloZener3D_classico_infini
 from result import Result
-
+import time
 
 # Instanceando classe ensaio de tracao
 ensaio=Ensaio_fluencia_recuperacao()
@@ -39,7 +39,11 @@ x=np.array([0.959474268362036,1.51569752353631,5.18653621382354,1.97476513530482
 resultados=Result()
 resultados.set_Result(material,ensaio)
 material.set_prop(x)
-resultados,fail=ensaio.run(material,resultados)
+t = time.time()
+for i in range(30):
+    print(i)
+    resultados,fail=ensaio.run(material,resultados)
+elapsed = time.time() - t
 
 # Plotando resultados 
 fig1=plt.figure()
